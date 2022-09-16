@@ -9,3 +9,6 @@ html, body, #root{
   background-color: #efefef;
   height: 100%;
 }
+p{
+  font-style: italic;
+}

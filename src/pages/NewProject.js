@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import ProjectForm from '../components/layout/project/ProjectForm';
 import styles from './NewProject.module.css'
 
+
 function NewProject(){
 
     const navigate = useNavigate()// usado para redirect de pagina
@@ -20,11 +21,10 @@ function NewProject(){
         })
         .then((resp) => resp.json())
         .then((data) => {
-            navigate("/projects")
+            navigate("/projects", {message: "asa"})
         })
         .catch((err) => console.log(err))
     }
-
     return(
         <div className={styles.newproject_container}>
             <h1>Criar projeto</h1>

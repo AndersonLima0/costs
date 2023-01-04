@@ -30,6 +30,7 @@ function ProjectForm({handleSubmit, btnText, projectData}){
     
     const submit = (e) =>{//chamado pelo submit do form
         e.preventDefault()
+        //handleSubmit recebeu a função createPost do newProject pela prop e agora adiciona o projeto no banco
         handleSubmit(project)
     }
     function handleChange(e){

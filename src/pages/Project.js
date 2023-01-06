@@ -2,10 +2,13 @@ import styles from './Project.module.css'
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import {parse, v4 as uuidv4} from 'uuid'
+
 import Loading from '../components/layout/Loading';
 import Container from '../components/layout/Container';
 import ProjectForm from '../components/layout/project/ProjectForm'
 import Message from '../components/layout/Message'
+import ServiceForm from '../components/service/ServiceForm';
 
 function Project(){
     //useParams é para obter parametros*(valor,objetos...) na url
@@ -43,11 +46,12 @@ function Project(){
         }
 
         fetch(`http://localhost:5000/projects/${project.id}`,{
-            //Metodo PATCH porque só muda o parametro enviado caso fosse UPDATE mudaria toda a entidade
+            //Metodo PATCH porque só muda o parametro enviado caso fosse PUT mudaria toda a entidade
             method: "PATCH",
             headers:{
                 'Content-Type' : 'application/json'
             },
+            //enviado o body porque estamos enviando dados para serem atualizados
             body: JSON.stringify(project)
         }).then((resp) => resp.json())
         .then((data) => {
@@ -56,6 +60,44 @@ function Project(){
             setMessage("Projeto atualizado!")
             setType('success')
         })
+        .catch((err) => console.log(err))
+    }
+
+    function createService(project){
+        setMessage('')
+
+        const lastService = project.services[project.services.length - 1]
+
+        //uuidv4 dar um id unico
+        lastService.id = uuidv4()
+
+        //lastServiceCost pegará o custo desse ultimo serviço(serviçoAtual)
+        const lastServiceCost = lastService.cost
+        
+        //newCost pega o custo atual do projeto e soma com o custo do ultimo serviço(atual) adicionado
+        const newCost = parseFloat(project.cost) + parseFloat(lastServiceCost)
+
+
+        if(newCost > parseFloat(project.budget)){
+            setMessage('Orçamento ultrapassado, verifique o valor do serviço')
+            setType('error')
+
+            //pop está retirando o serviço que ultrapassou o valor
+            project.services.pop()
+            return false
+        }
+        //adiciona o custo ao projeto
+        project.cost = newCost
+        
+        //atualiza o projeto  
+        fetch(`http://localhost:5000/projects/${project.id}`, {
+            method: 'PATCH',
+            headers:{
+                'Content-Type' : 'application/json'
+            },
+            body: JSON.stringify(project) 
+        }).then((resp) => resp.json())
+        .then((data) => setProject(data))
         .catch((err) => console.log(err))
     }
 
@@ -102,9 +144,10 @@ function Project(){
                             </button>
                             <div className={styles.project_info}>
                                 {showServiceForm && (
-                                    <div>
-                                        formulario do serviço
-                                    </div>
+                                    <ServiceForm 
+                                    handleSubmit={createService}
+                                    textBtn="Adicionar serviço"
+                                    projectData={project}/>
                                 )}
                             </div>
                     </div>

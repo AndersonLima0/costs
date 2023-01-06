@@ -2,13 +2,26 @@
   "projects": [
     {
       "name": "Sussurros do Coração 2",
-      "budget": "60000",
+      "budget": "6000",
       "category": {
         "id": "2",
         "name": "Desenvolvimento"
       },
-      "cost": 0,
-      "services": [],
+      "cost": 700,
+      "services": [
+        {
+          "name": "Contratação de designers",
+          "cost": "200",
+          "description": "Designer para o filme",
+          "id": "7c14622d-f715-4280-b7c2-64aa5ce960eb"
+        },
+        {
+          "name": "Contratação de maestro",
+          "cost": "500",
+          "description": "Contratar maestro para realizar as soundtracks",
+          "id": "cf34db6f-ab45-4f12-a89e-64cc84a0b810"
+        }
+      ],
       "id": 1
     },
     {

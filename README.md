@@ -2,8 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-<div align-itens="center">
-<img src="../../imagensCost/img1.jpg"/>
+<div>
+<img src="src/assets/img1.jpg"/>
 </div>
 
 ## Available Scripts

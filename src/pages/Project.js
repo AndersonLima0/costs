@@ -99,13 +99,48 @@ function Project(){
                 'Content-Type' : 'application/json'
             },
             body: JSON.stringify(project) 
-        }).then((resp) => resp.json())
-        .then((data) => setProject(data))
+        })
+        .then((resp) => resp.json())
+        .then((data) => {
+            setProject(data)
+            setShowProjctForm(false)
+            setMessage('Serviço criado com sucesso!')
+            setType('success')
+
+        })
         .catch((err) => console.log(err))
     }
 
-    function removeService(){
+    function removeService(id,cost){
+        setMessage('')
 
+        //filtra o service que tem o id igual ao passado por parametro
+        const serviceUpdated = project.services.filter(
+            (service) => service.id !== id
+        )
+        //recebe meu projeto que está no state
+        const projectUpdated = project
+        
+        //atualiza os serviços do projeto que está no state
+        projectUpdated.services = serviceUpdated
+        
+        //atualiza o custo do projeto que está no state subtraindo o custo do serviço removido
+        projectUpdated.cost = parseFloat(projectUpdated.cost) - parseFloat(cost)
+
+        //atualizar o bando
+        fetch(`http://localhost:5000/projects/${project.id}`,{
+            method: 'PATCH',
+            headers:{
+                'Content-Type' : 'application/json'
+            },
+            body: JSON.stringify(projectUpdated)
+        }).then((resp) => resp.json()).then((data) =>{
+           setProject(projectUpdated)
+           setServices(serviceUpdated) 
+           setMessage("Serviço removido com succeso!")
+           setType('success')
+        })
+        .catch((err) => console.log(err))
     }
     function toggleProjectForm(){
         setShowProjctForm(!showProjectForm)

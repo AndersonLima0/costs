@@ -6,6 +6,29 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 <img src="src/assets/img1.jpg"/>
 </div>
 
+<br>
+<div>
+<img src="src/assets/img2.jpg"/>
+</div>
+
+<br>
+<div>
+<img src="src/assets/img3.jpg"/>
+</div>
+
+<br>
+<div>
+<img src="src/assets/img4.jpg"/>
+</div>
+
+<br>
+
+<div>
+<img src="src/assets/img5.jpg"/>
+</div>
+
+<br>
+
 ## Available Scripts
 
 In the project directory, you can run:

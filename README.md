@@ -2,28 +2,34 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Costs is a project management system, for example it is possible to add a budget to it and the services that are linked have their costs limited to the established budget. Services are smaller parts of the project so according to their addition, the cost of the project changes but without going over budget
+
 <div>
+<h2>Home:</h2>
 <img src="src/assets/img1.jpg"/>
 </div>
 
 <br>
 <div>
+<h2>Página de projetos criados:</h2>
 <img src="src/assets/img2.jpg"/>
 </div>
 
 <br>
 <div>
+<h2>Criação de projetos:</h2>
 <img src="src/assets/img3.jpg"/>
 </div>
 
 <br>
 <div>
+<h2> Página de edição do projeto:</h2>
 <img src="src/assets/img4.jpg"/>
 </div>
 
 <br>
-
 <div>
+<h2>Adição de serviço ao projeto:</h2>
 <img src="src/assets/img5.jpg"/>
 </div>
 
